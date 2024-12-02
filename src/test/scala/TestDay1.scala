@@ -2,7 +2,7 @@ import org.scalatest._
 import flatspec._
 import matchers._
 
-val testData1: List[Tuple2[Int, Int]] =
+private val testData1: List[Tuple2[Int, Int]] =
   List((3, 4), (4, 3), (2, 5), (1, 3), (3, 9), (3, 3))
 
 class Day1Spec extends AnyFlatSpec with should.Matchers {
