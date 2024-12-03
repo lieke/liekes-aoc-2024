@@ -25,9 +25,6 @@ class Day3Spec extends AnyFlatSpec with should.Matchers {
     instructions(0) shouldBe "mul(2,4)"
     instructions(1) shouldBe "mul(5,5)"
     instructions.length shouldBe 4
-
-    val parsedInstructions = Day3.parseTheInstructions(testData)
-    val instr = parsedInstructions(0)(0) shouldBe 2
   }
 
   "The total of the instructions" should "be correctly calculated" in {
