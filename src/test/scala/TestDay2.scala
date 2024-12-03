@@ -2,7 +2,7 @@ import org.scalatest._
 import flatspec._
 import matchers._
 
-private val testData1: List[List[Int]] = List(
+private val testData: List[List[Int]] = List(
   List(7, 6, 4, 2, 1),
   List(1, 2, 7, 8, 9),
   List(9, 7, 6, 2, 1),
@@ -15,13 +15,13 @@ class Day2Spec extends AnyFlatSpec with should.Matchers {
 
   "Only decreasing or increasing reports" should "be safe" in {
     val sortedUpOrDown: List[List[Int]] =
-      testData1.filter(x => Day2.isIncreasingOrDecreasing(x))
+      testData.filter(x => Day2.isIncreasingOrDecreasing(x))
     sortedUpOrDown.length shouldBe 5
   }
 
   "Only increases differences between 1 and 3" should "be safe" in {
     val sortedUpOrDown: List[List[Int]] =
-      testData1.filter(x => Day2.isIncreasingOrDecreasing(x))
+      testData.filter(x => Day2.isIncreasingOrDecreasing(x))
     val safeDifferences: List[Boolean] =
       sortedUpOrDown.map(Day2.isSafeDifferenceFilter(_))
     safeDifferences.filter(_ == true).length shouldBe 2
@@ -35,10 +35,10 @@ class Day2Spec extends AnyFlatSpec with should.Matchers {
   }
 
   "A dampened list" should "be correctly identified as safe" in {
-    val isSafe1: Boolean = Day2.getDampenedSafety(testData1(0))
-    val isSafe2: Boolean = Day2.getDampenedSafety(testData1(3))
-    val isSafe3: Boolean = Day2.getDampenedSafety(testData1(4))
-    val isSafe4: Boolean = Day2.getDampenedSafety(testData1(5))
+    val isSafe1: Boolean = Day2.getDampenedSafety(testData(0))
+    val isSafe2: Boolean = Day2.getDampenedSafety(testData(3))
+    val isSafe3: Boolean = Day2.getDampenedSafety(testData(4))
+    val isSafe4: Boolean = Day2.getDampenedSafety(testData(5))
     isSafe1 shouldBe true
     isSafe2 shouldBe true
     isSafe3 shouldBe true
@@ -46,15 +46,15 @@ class Day2Spec extends AnyFlatSpec with should.Matchers {
   }
 
   "A dampened list" should "be correctly identified as unsafe" in {
-    val isSafe1: Boolean = Day2.getDampenedSafety(testData1(1))
-    val isSafe2: Boolean = Day2.getDampenedSafety(testData1(2))
+    val isSafe1: Boolean = Day2.getDampenedSafety(testData(1))
+    val isSafe2: Boolean = Day2.getDampenedSafety(testData(2))
     isSafe1 shouldBe false
     isSafe2 shouldBe false
   }
 
   "The amount of dampened safe lists" should "be correctly identified" in {
     val amountOfSafeLists =
-      testData1.map(Day2.getDampenedSafety(_)).filter(_ == true).length
+      testData.map(Day2.getDampenedSafety(_)).filter(_ == true).length
     amountOfSafeLists shouldBe 4
   }
 }

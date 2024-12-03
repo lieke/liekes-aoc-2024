@@ -14,4 +14,10 @@ object Main:
     println("The amount of safe dampened reports is: " + Day2.getTheAmountOfSafeDampenedReports)
     elapsedTime = System.currentTimeMillis-initTime
     println("This took " + elapsedTime + " milliseconds")
+    println("====Day3====")
+    initTime = System.currentTimeMillis
+    println("The multiplication result is: " + Day3.getTheInstructionTotal())
+    println("The enabled multiplication result is: " + Day3.getTheEnabledInstructionTotal())
+    elapsedTime = System.currentTimeMillis-initTime
+    println("This took " + elapsedTime + " milliseconds")
   }
