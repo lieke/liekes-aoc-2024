@@ -21,7 +21,7 @@ class Day3Spec extends AnyFlatSpec with should.Matchers {
   }
 
   "All of the mul instructions" should "be found" in {
-    val instructions = Day3.findAllMulInstructions(testData)
+    val instructions = Day3.findAllInstructions(testData, Day3.mulRegex)
     instructions(0) shouldBe "mul(2,4)"
     instructions(1) shouldBe "mul(5,5)"
     instructions.length shouldBe 4
@@ -42,13 +42,13 @@ class Day3Spec extends AnyFlatSpec with should.Matchers {
   }
 
   "All of the instructions" should "be found" in {
-    val instructions = Day3.findAllInstructions(testData2)
+    val instructions = Day3.findAllInstructions(testData2, Day3.doDontMulRegex)
     instructions.length shouldBe 6
     instructions(1) shouldBe "don't()"
   }
 
   "The instructions" should "be enabled or disabled based on do or dont" in {
-    val instructions = Day3.findAllInstructions(testData2)
+    val instructions = Day3.findAllInstructions(testData2, Day3.doDontMulRegex)
     Day3.disAbleOrEnable(instructions(1)) shouldBe 0
     Day3.doOrDont shouldBe false
     Day3.disAbleOrEnable(instructions(4)) shouldBe 0

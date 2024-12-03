@@ -1,21 +1,21 @@
 import scala.util.matching.Regex
 
 object Day3 {
-  val mulRegex = raw"mul\((\d{1,3}),(\d{1,3})\)".r
-  val doDontMulRegex = raw"do\(\)|don\'t\(\)|mul\((\d{1,3}),(\d{1,3})\)".r
+  val mulRegex: Regex = raw"mul\((\d{1,3}),(\d{1,3})\)".r
+  val doDontMulRegex: Regex =
+    raw"do\(\)|don\'t\(\)|mul\((\d{1,3}),(\d{1,3})\)".r
   val mulPattern: Regex = raw"mul\((\d+),(\d+)\)".r
   var doOrDont: Boolean = true
 
-  def findAllMulInstructions(inputString: String): List[String] = {
-    Day3.mulRegex.findAllIn(inputString).toList
-  }
-
-  def findAllInstructions(inputString: String): List[String] = {
-    Day3.doDontMulRegex.findAllIn(inputString).toList
+  def findAllInstructions(
+      inputString: String,
+      regex: Regex
+  ): List[String] = {
+    regex.findAllIn(inputString).toList
   }
 
   def getTheInstructionTotal(inputString: String): Int = {
-    val instructions = findAllMulInstructions((inputString))
+    val instructions = findAllInstructions(inputString, mulRegex)
     instructions
       .map(x =>
         x match {
@@ -36,9 +36,9 @@ object Day3 {
   }
 
   def getEnabledInstructionTotal(inputString: String): Int = {
-    val instructions = Day3.findAllInstructions(inputString)
+    val instructions = findAllInstructions(inputString, doDontMulRegex)
     var sum: Int = 0
-    instructions.foreach(elem => sum = Day3.disAbleOrEnable(elem) + sum)
+    instructions.foreach(elem => sum = disAbleOrEnable(elem) + sum)
     sum
   }
 
