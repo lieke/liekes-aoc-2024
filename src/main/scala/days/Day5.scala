@@ -24,4 +24,30 @@ class Day5(val rules: List[List[Int]], val updates: List[List[Int]]) {
   def theSumOfMiddlePagesOfCorrectUpdates: Int = {
     correctUpdates.map(getMiddlePageNumber(_)).sum
   }
+
+  def theSumOfMiddlePagesOfReorderedUpdates: Int = {
+    val reorderedUpdates = incorrectUpdates.map(reorderWrongUpdate(_))
+    reorderedUpdates.map(getMiddlePageNumber(_)).sum
+  }
+
+  def reorderWrongUpdate(update: List[Int]): List[Int] = {
+    var result = update
+    while (!checkUpdate(result)) {
+      rules.foreach(x => result = applyRule(result, x))
+    }
+    result
+  }
+
+  def applyRule(update: List[Int], rule: List[Int]): List[Int] = {
+    var result = update
+    val indexOfWhatShouldBeFirst: Int = update.indexOf(rule(0))
+    val indexOfWhatShouldBeLast: Int = update.indexOf(rule(1))
+    if (
+      indexOfWhatShouldBeFirst > -1 && indexOfWhatShouldBeLast > -1 && indexOfWhatShouldBeFirst > indexOfWhatShouldBeLast
+    ) {
+      result = result.updated(indexOfWhatShouldBeFirst, rule(1))
+      result = result.updated(indexOfWhatShouldBeLast, rule(0))
+    }
+    result
+  }
 }

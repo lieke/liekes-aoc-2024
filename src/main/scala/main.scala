@@ -25,7 +25,13 @@ object Main:
     val day4 = new Day4(Day4Data.input)
     println("The amount of XMASses is: " + day4.findAmountOfXMASses)
     println("The amount of crosses is: " + day4.findAmountOfCrosses)
-    println("")
+    elapsedTime = System.currentTimeMillis-initTime
+    println("This took " + elapsedTime + " milliseconds")
+    println("====Day5====")
+    val day5 = new Day5(Day5Data.pageOrderingRules, Day5Data.updates)
+    initTime = System.currentTimeMillis
+    println("The sum of the middle pages of correct updates is: " + day5.theSumOfMiddlePagesOfCorrectUpdates)
+    println("The sum of the middle pages of reordered incorrect updates is: " + day5.theSumOfMiddlePagesOfReorderedUpdates)
     elapsedTime = System.currentTimeMillis-initTime
     println("This took " + elapsedTime + " milliseconds")
   }
