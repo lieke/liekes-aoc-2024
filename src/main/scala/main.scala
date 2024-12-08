@@ -7,13 +7,23 @@ object Main:
     day3()
     day4()
     day5()
-    day6()
-    day7()
+    day6() takes too long
+    day7() takes too long
     day8()
+    day9()
   }
 
   def dayX() = {
     println("====DayX====")
+    val initTime = System.currentTimeMillis
+    println("Part 1 is: ")
+    println("Part 2 is: ")
+    val elapsedTime = System.currentTimeMillis-initTime
+    println("This took " + elapsedTime + " milliseconds")
+  }
+
+  def day9() = {
+    println("====Day9====")
     val initTime = System.currentTimeMillis
     println("Part 1 is: ")
     println("Part 2 is: ")
@@ -37,10 +47,12 @@ object Main:
     println("====Day7====")
     val initTime = System.currentTimeMillis
     val totalCalibrationResult = Day7Data.input.map(x => Day7.findAllCombinatorOutcomes(x._2, x._1)).sum 
+    val totalCalibrationResultWithConcatenator = Day7Data.input.map(x => Day7.findAllCombinatorOutcomesWithConcatenator(x._2, x._1)).sum 
     println("The total calibration result is: " + totalCalibrationResult)
-    println("Part 2 is: ")
+    //This takes about 24 minutes :(
+    //println("The total calibration result with concatenator is: " + totalCalibrationResultWithConcatenator)
     val elapsedTime = System.currentTimeMillis-initTime
-    println("This took " + elapsedTime + " milliseconds")
+    println("This took " + elapsedTime + " milliseconds") //1460829 ms
   }
 
   def day6() = {
@@ -50,6 +62,7 @@ object Main:
     val lab = new Laboratory(day6.map, day6.guardPosition, day6.guardDirection)
     lab.predictPath
     println("The predicted path of the guard is : " + lab.getVisitedPositions + " positions")
+    //This takes about 4 minutes :(
     //println("The amount of possibile loop possibilities is : " + day6.findAllLoopPossibilities)
     val elapsedTime = System.currentTimeMillis-initTime
     println("This took " + elapsedTime + " milliseconds")

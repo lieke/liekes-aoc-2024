@@ -31,6 +31,12 @@ class Day7Spec extends AnyFlatSpec with should.Matchers {
       .map(x => Day7.findAllCombinatorOutcomes(x._2, x._1))
       .sum shouldBe 3749
   }
+
+  "The total calibration result with the concatenator" should "be correctly calcultated" in {
+    testInput
+      .map(x => Day7.findAllCombinatorOutcomesWithConcatenator(x._2, x._1))
+      .sum shouldBe 11387
+  }
 }
 
 val testInput: List[Tuple2[Long, List[Int]]] = List(
