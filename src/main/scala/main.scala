@@ -2,7 +2,7 @@ object Main:
 
   @main def adventOfCode2024(): Unit = {
     println("Welcome to Advent of Code 2024!")
-    day1()
+    /*day1()
     day2()
     day3()
     day4()
@@ -10,7 +10,8 @@ object Main:
     day6()
     day7()
     day8()
-    day9()
+    day9()*/
+    day10()
   }
 
   def dayX() = {
@@ -22,13 +23,27 @@ object Main:
     println("This took " + elapsedTime + " milliseconds")
   }
 
+  def day10() = {
+    println("====DayX====")
+    val initTime = System.currentTimeMillis
+    val topoMap = new TopoMap(Day10Data.input)
+    println("The sum of the scores of all trailheads is: " + topoMap.getTheTrailheadScoresSum())
+    println("The sum of the ratings of all trailheads is: " + topoMap.getTheTrailheadRatingsSum())
+    val elapsedTime = System.currentTimeMillis-initTime
+    println("This took " + elapsedTime + " milliseconds")
+  }
+
+
   def day9() = {
     println("====Day9====")
     val initTime = System.currentTimeMillis
-    println("Part 1 is: ")
-    println("Part 2 is: ")
+    val diskLayout = Day9.getDiskLayout(Day9Data.input)
+    //val checkSum = Day9.calculateCheckSum(Day9.cleanUpDiskLayout(diskLayout))
+    val checkSumOptimized = Day9.calculateCheckSum(Day9.cleanupDiskLayoutPerFile(diskLayout))
+    //println("The checksum of the cleaned up disk is: " + checkSum)
+    println("The checksum of the optimized cleaned up disk is: " + checkSumOptimized) //too low
     val elapsedTime = System.currentTimeMillis-initTime
-    println("This took " + elapsedTime + " milliseconds")
+    println("This took " + elapsedTime + " milliseconds") // ~ 50 seconds
   }
 
   def day8() = {
@@ -47,7 +62,7 @@ object Main:
     println("====Day7====")
     val initTime = System.currentTimeMillis
     val totalCalibrationResult = Day7Data.input.map(x => Day7.findAllCombinatorOutcomes(x._2, x._1)).sum 
-    val totalCalibrationResultWithConcatenator = Day7Data.input.map(x => Day7.findAllCombinatorOutcomesWithConcatenator(x._2, x._1)).sum 
+    //val totalCalibrationResultWithConcatenator = Day7Data.input.map(x => Day7.findAllCombinatorOutcomesWithConcatenator(x._2, x._1)).sum 
     println("The total calibration result is: " + totalCalibrationResult)
     //This takes about 24 minutes :(
     //println("The total calibration result with concatenator is: " + totalCalibrationResultWithConcatenator)
